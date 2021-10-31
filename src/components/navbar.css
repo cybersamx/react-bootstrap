@@ -1,0 +1,20 @@
+.navbar-logo {
+  pointer-events: none;
+  width: 32px;
+  height: 32px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .navbar-logo {
+    animation: navbar-logo-spin infinite 20s linear;
+  }
+}
+
+@keyframes navbar-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
