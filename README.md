@@ -2,7 +2,11 @@
 
 A simple, clean starter project with React and Bootstrap 5.
 
-![Screenshot](screenshot.png)
+The public pages.
+![Screenshot of a public page](screenshot_public.png)
+
+The restricted admin console.
+![Screenshot of the admin console](screenshot_console.png)
 
 ## Setup
 

@@ -42,6 +42,6 @@ body {
 }
 
 .auth-icon {
-  width: 64px;
-  height: 64px;
+  color: #7713F7;
+  font-size: 4rem;
 }

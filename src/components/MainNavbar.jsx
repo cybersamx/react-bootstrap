@@ -1,10 +1,9 @@
 import { NavLink } from 'react-router-dom';
-import { Nav } from 'react-bootstrap';
 
 import './navbar.css';
 import logo from './logo.svg';
 
-function Navbar() {
+function MainNavbar() {
   const items = [
     { path: '/', title: 'Home' },
     { path: '/login', title: 'Login' },
@@ -13,14 +12,19 @@ function Navbar() {
   ];
 
   return (
-    <Nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid">
-        <a className="navbar-brand d-flex" href="/">
+        <a className="navbar-brand d-flex pt-2" href="/">
           <img src={logo} alt="" className="navbar-logo" />React-Bootstrap
         </a>
-        <button className="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu"
-                aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon"></span>
+        <button className="navbar-toggler collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarMenu"
+                aria-controls="navbarMenu"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon"/>
         </button>
         <div className="collapse navbar-collapse" id="navbarMenu">
           <ul className="navbar-nav">
@@ -34,8 +38,8 @@ function Navbar() {
           </ul>
         </div>
       </div>
-    </Nav>
+    </nav>
   );
 }
 
-export default Navbar;
+export default MainNavbar;

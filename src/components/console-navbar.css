@@ -1,0 +1,11 @@
+@import "navbar.css";
+
+.nav-avatar {
+  width: 32px;
+  height: 32px;
+}
+
+.nav-avatar-dropdown {
+  border-style: hidden;
+  background-color: transparent;
+}

@@ -1,12 +1,13 @@
 // CREDIT: https://getbootstrap.com/docs/5.1/examples/sign-in/
-
 import { Helmet } from 'react-helmet';
+import { useNavigate } from 'react-router-dom';
 
 import './auth.css';
-import icon from './icon.svg';
 
 function Login() {
   const title = 'Login';
+
+  const navigate = useNavigate();
 
   return (
     <>
@@ -15,8 +16,8 @@ function Login() {
       </Helmet>
       <main className="container-auth text-center">
         <form>
-          <img className="my-4 auth-icon" src={icon} alt="lock icon" />
-          <h1 className="h3 mb-3 fw-normal">Please log in</h1>
+          <i className="bi bi-file-lock-fill auth-icon my-4"/>
+          <p className="mb-3 fw-normal">Click <strong>Log in</strong> button to log into the admin console.</p>
           <div className="form-floating">
             <input type="email"
                    className="form-control form-input-top"
@@ -36,7 +37,9 @@ function Login() {
               <input type="checkbox" value="remember-me" /> Remember me
             </label>
           </div>
-          <button className="w-100 btn btn-lg btn-primary" type="button">Log in</button>
+          <button className="w-100 btn btn-lg btn-primary"
+                  type="button"
+                  onClick={() => navigate('/console')}>Log in</button>
         </form>
       </main>
     </>

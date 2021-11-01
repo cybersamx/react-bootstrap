@@ -11,31 +11,12 @@ insert_final_newline = true
 charset = utf-8
 trim_trailing_whitespace = true
 indent_style = space
+indent_size = 2
 
 # --- Go ---
 [*.go]
 indent_style = tab
 indent_size = 4
-
-# --- JavaScript and TypeScript ---
-[*.{js,jsx,ts,tsx}]
-indent_size = 2
-
-# --- HTML ---
-[*.{html,htm}]
-indent_size = 2
-
-# --- CSS ---
-[*.css]
-indent_size = 2
-
-# --- JSON ---
-[*.json]
-indent_size = 2
-
-# --- YAML ---
-[*.{yaml,yml}]
-indent_size = 2
 
 # --- Others ---
 [Makefile]
