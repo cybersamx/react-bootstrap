@@ -1,6 +1,5 @@
-import React from 'react';
 import {
-  BrowserRouter, Navigate, Route, Routes,
+  BrowserRouter, Navigate, Routes, Route,
 } from 'react-router-dom';
 
 import MainLayout from '../layouts/MainLayout';
@@ -15,27 +14,30 @@ import Dashboard from '../pages/Dashboard';
 import Apps from '../pages/Apps';
 import Users from '../pages/Users';
 import Settings from '../pages/Settings';
+import AuthProvider from '../services/AuthProvider';
 
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<MainLayout />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/logout" element={<Logout />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="not-found" element={<NotFound />} />
-          <Route path="*" element={<Navigate to="/not-found" />} />
-        </Route>
-        <Route path="/console" element={<ConsoleLayout />}>
-          <Route path="/console" element={<Dashboard />} />
-          <Route path="/console/profile" element={<Profile />} />
-          <Route path="/console/apps" element={<Apps />} />
-          <Route path="/console/users" element={<Users />} />
-          <Route path="/console/settings" element={<Settings />} />
-        </Route>
-      </Routes>
+      <AuthProvider>
+        <Routes>
+          <Route path="/" element={<MainLayout />}>
+            <Route path="" element={<Home />} />
+            <Route path="login" element={<Login />} />
+            <Route path="logout" element={<Logout />} />
+            <Route path="signup" element={<Signup />} />
+            <Route path="not-found" element={<NotFound />} />
+            <Route path="*" element={<Navigate to="/not-found" />} />
+          </Route>
+          <Route path="console" element={<ConsoleLayout />}>
+            <Route path="" element={<Dashboard />} />
+            <Route path="profile" element={<Profile />} />
+            <Route path="apps" element={<Apps />} />
+            <Route path="users" element={<Users />} />
+            <Route path="settings" element={<Settings />} />
+          </Route>
+        </Routes>
+      </AuthProvider>
     </BrowserRouter>
   );
 }

@@ -1,14 +1,19 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
+import { logout } from '../services/MockAuthService';
 import './console-navbar.css';
 import userIcon from '../common/user.svg';
 import logo from './logo.svg';
 
 function ConsoleNavbar() {
-  const items = [
-    { path: '/console/profile', title: 'Profile' },
-    { path: '/', title: 'Logout' },
-  ];
+  const navigate = useNavigate();
+
+  const handleLogout = async (e) => {
+    e.preventDefault();
+
+    await logout();
+    navigate('/');
+  };
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark sticky-top bg-dark p-1 shadow">
@@ -38,13 +43,12 @@ function ConsoleNavbar() {
                 Admin
               </button>
               <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenu">
-                {
-                  items.map((item, i) => (
-                    <li key={i}>
-                      <Link className="dropdown-item" to={item.path}>{item.title}</Link>
-                    </li>
-                  ))
-                }
+                <li>
+                  <a className="dropdown-item" href='/console/profile'>Profile</a>
+                </li>
+                <li>
+                  <button className="dropdown-item" onClick={handleLogout}>Logout</button>
+                </li>
               </ul>
             </li>
           </ul>
