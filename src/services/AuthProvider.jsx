@@ -1,16 +1,15 @@
 import React from 'react';
 
 import {
-  getToken, isAuth, login, logout,
+  getSession, isAuth, login, logout,
 } from './MockAuthService';
 
 const AuthContext = React.createContext(null);
-const useAuth = () => React.useContext(AuthContext);
 
 function AuthProvider({ children, ...rest }) {
   // AuthContext to encapsulate these functions, which are wrappers to the services service.
   const auth = {
-    getToken,
+    getSession,
     isAuth,
     login,
     logout,
@@ -23,5 +22,5 @@ function AuthProvider({ children, ...rest }) {
   );
 }
 
-export { useAuth };
+export { AuthContext };
 export default AuthProvider;

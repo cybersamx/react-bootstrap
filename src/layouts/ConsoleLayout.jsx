@@ -3,7 +3,7 @@ import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import Footer from '../components/Footer';
 import ConsoleNavbar from '../components/ConsoleNavbar';
 import Sidebar from '../components/Sidebar';
-import { useAuth } from '../services/AuthProvider';
+import useAuth from '../hooks/useAuth';
 
 function ConsoleLayout() {
   const auth = useAuth();

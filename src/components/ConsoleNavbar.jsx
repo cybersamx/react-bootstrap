@@ -2,11 +2,14 @@ import { useNavigate } from 'react-router-dom';
 
 import { logout } from '../services/MockAuthService';
 import './console-navbar.css';
-import userIcon from '../common/user.svg';
 import logo from './logo.svg';
+import Jdenticon from './Jdenticon';
+import useAuth from '../hooks/useAuth';
 
 function ConsoleNavbar() {
   const navigate = useNavigate();
+  const auth = useAuth();
+  const user = auth.getSession();
 
   const handleLogout = async (e) => {
     e.preventDefault();
@@ -39,8 +42,8 @@ function ConsoleNavbar() {
                       id="dropdownMenu"
                       data-bs-toggle="dropdown"
                       aria-expanded="false">
-                <img src={userIcon} className="nav-avatar rounded-circle nav-avatar" alt="avatar" />
-                Admin
+                <Jdenticon className="nav-avatar rounded-circle" name={user.username} height="32px" width="32px" />
+                {user.username}
               </button>
               <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenu">
                 <li>

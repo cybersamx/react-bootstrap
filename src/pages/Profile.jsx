@@ -1,10 +1,13 @@
 import { Helmet } from 'react-helmet';
 
-import './profile.css';
-import userIcon from '../common/user.svg';
+import Jdenticon from '../components/Jdenticon';
+import useAuth from '../hooks/useAuth';
 
 function Logout() {
   const title = 'Profile';
+
+  const auth = useAuth();
+  const user = auth.getSession();
 
   return (
     <>
@@ -12,8 +15,8 @@ function Logout() {
         <title>{title}</title>
       </Helmet>
       <main className="container-auth text-center">
-        <img className="my-4 avatar-icon" src={userIcon} alt="Avatar" />
-        <h3 className="h3 mb-3 fw-normal">Administrator</h3>
+        <Jdenticon name={user.username} height="96px" width="96px" />
+        <h3 className="h3 mb-3 fw-normal">{user.username}</h3>
       </main>
     </>
   );

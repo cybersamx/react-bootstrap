@@ -1,0 +1,10 @@
+.container-signup {
+  width: 100%;
+  max-width: 600px;
+  padding: 15px;
+  margin: auto;
+}
+
+.container-signup .form-label {
+  margin-bottom: 0;
+}

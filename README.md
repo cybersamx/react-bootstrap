@@ -1,4 +1,4 @@
-# React Bootstrap Project Template
+# React Bootstrap Starter Project
 
 A simple, clean starter project with React and Bootstrap 5.
 
@@ -7,6 +7,14 @@ The public pages.
 
 The restricted admin console.
 ![Screenshot of the admin console](screenshot_console.png)
+
+## Motivation
+
+Learning React through this project and motivated to create a boilerplate project that I (or anyone) can use. Here are some of the design principles for this project.
+
+* Keep it simple.
+* Use it for quick prototyping yet extensible enough for a production-ready project.
+* Leverage `eslint` and `prettier` with the right amount of plugins and mix of configurations to maximize for developer productivity and code cleanliness.
 
 ## Setup
 
@@ -40,9 +48,11 @@ There seems to be in the `Routes` component from `react-router-dom`. I can't see
 
 ## Credits
 
-* [Bootstrap 5 Examples](https://getbootstrap.com/docs/5.1/examples)
+* [Bootstrap 5 Examples](https://getbootstrap.com/docs/5.1/examples) - Used many of the examples on Bootstrap 5 website on this project.
+* [Form validation with React Hook](https://felixgerschau.com/react-hooks-form-validation-typescript/) - Borrowed code to write a custom React Hook to handle a form, including validation.
 
 ## Reference
 
+* [React Router v6 Preview](https://reacttraining.com/blog/react-router-v6-pre/)
 * [Upgrade React Router v5 to v6](https://morioh.com/p/995f1244f33b)
 * [React Router v6 Reference](https://github.com/remix-run/react-router/blob/c13b66939ef48eacf7067f7aec4752777be8b17c/docs/api-reference.md)
