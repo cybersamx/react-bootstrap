@@ -5,7 +5,7 @@ import {
   Button, FormControl, FormLabel, InputGroup, Spinner,
 } from 'react-bootstrap';
 
-import { login } from '../services/MockAuthService';
+import useAuth from '../hooks/useAuth';
 import useForm from '../hooks/useForm';
 
 import './login.css';
@@ -20,6 +20,7 @@ function Login() {
   const title = 'Login';
 
   const [isLoading, setIsLoading] = useState(false);
+  const { login } = useAuth();
   const navigate = useNavigate();
   const { search } = useLocation();
 

@@ -4,7 +4,7 @@ const registeredUsers = new Map([
     id: 'uid:0', username: 'admin', email: 'admin@example.com', password: 'qwerty', firstname: 'App', lastname: 'Admin',
   }],
   ['lee', {
-    id: 'uid:973236115', username: 'lee', email: 'lee@acne.com', password: '12345', firstname: 'Steve', lastname: 'Lee',
+    id: 'uid:973236115', username: 'lee', email: 'lee@acme.com', password: '12345', firstname: 'Steve', lastname: 'Lee',
   }],
 ]);
 
@@ -85,6 +85,16 @@ async function addUser(user) {
   });
 }
 
+async function getUsers() {
+  return new Promise((resolve) => {
+    // Using setTimeout to simulate network latency.
+    setTimeout(() => {
+      const users = Array.from(registeredUsers.values());
+      resolve(users);
+    }, 1000);
+  });
+}
+
 export {
-  getSession, isAuth, login, logout, addUser,
+  getSession, isAuth, login, logout, addUser, getUsers,
 };

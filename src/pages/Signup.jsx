@@ -6,7 +6,7 @@ import {
   Col, Button, Form, FormControl, InputGroup, FormLabel, Spinner,
 } from 'react-bootstrap';
 
-import { addUser } from '../services/MockAuthService';
+import useAuth from '../hooks/useAuth';
 
 import './signup.css';
 
@@ -19,6 +19,7 @@ function Signup() {
 
   const [isValidated, setIsValidated] = useState(false); // Disable browser form validator.
   const [isLoading, setIsLoading] = useState(false);
+  const { addUser } = useAuth();
   const navigate = useNavigate();
   const {
     register, handleSubmit, formState: { errors },
