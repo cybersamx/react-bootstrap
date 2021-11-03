@@ -22,25 +22,27 @@ function useForm(options) {
     if (validators) {
       let valid = true;
       const errs = {};
-      // eslint-disable-next-line guard-for-in
       for (const fieldname in validators) {
-        const value = data[fieldname];
-        const validator = validators[fieldname];
-        if (validator?.required?.value && !value) {
-          valid = false;
-          errs[fieldname] = validator.required.message;
-        }
+        if (Object.hasOwnProperty.call(validators, fieldname)) {
+          const value = data[fieldname];
+          const validator = validators[fieldname];
+          if (validator?.required?.value && !value) {
+            valid = false;
+            errs[fieldname] = validator.required.message;
+          }
 
-        const pattern = validator?.pattern;
-        if (pattern?.value && !RegExp(pattern.value).test(value)) {
-          valid = false;
-          errs[fieldname] = pattern.message;
-        }
+          const pattern = validator?.pattern;
+          if (pattern?.value && !RegExp(pattern.value)
+            .test(value)) {
+            valid = false;
+            errs[fieldname] = pattern.message;
+          }
 
-        const custom = validator?.custom;
-        if (custom?.isValid && !custom.isValid(value)) {
-          valid = false;
-          errs[fieldname] = custom.message;
+          const custom = validator?.custom;
+          if (custom?.isValid && !custom.isValid(value)) {
+            valid = false;
+            errs[fieldname] = custom.message;
+          }
         }
       }
 

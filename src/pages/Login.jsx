@@ -8,7 +8,7 @@ import {
 import { login } from '../services/MockAuthService';
 import useForm from '../hooks/useForm';
 
-import './auth.css';
+import './login.css';
 
 function redirectPath(search) {
   const match = search.match(/redirect=(.*)/);
@@ -81,7 +81,8 @@ function Login() {
                          id="inputUsername"
                          placeholder="Username"
                          isInvalid={errors?.username}
-                         onChange={handleChange('username')} />
+                         onChange={handleChange('username')}
+            />
             <FormLabel htmlFor="inputUsername">Username</FormLabel>
           </InputGroup>
           <InputGroup className="form-floating">
@@ -90,7 +91,8 @@ function Login() {
                          id="inputPassword"
                          placeholder="Password"
                          isInvalid={errors?.password}
-                         onChange={handleChange('password')} />
+                         onChange={handleChange('password')}
+            />
             <FormLabel htmlFor="inputPassword">Password</FormLabel>
           </InputGroup>
           {Object.keys(errors).map((key) => <div className="text-danger" key={key}>{errors[key]}</div>)}
@@ -99,14 +101,16 @@ function Login() {
               <input type="checkbox"
                      value="isRemember"
                      checked={data.isRemember}
-                     onChange={handleChange('isRemember')} />
+                     onChange={handleChange('isRemember')}
+              />
               Remember me
             </label>
           </div>
           <Button className="w-100 btn btn-lg btn-primary"
                   type="button"
                   disabled={isLoading}
-                  onClick={handleSubmit}>
+                  onClick={handleSubmit}
+          >
             <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" hidden={!isLoading} />
             <span className="px-2">Log in</span>
           </Button>

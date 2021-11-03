@@ -1,12 +1,17 @@
 const keyUser = 'authx.user';
-const registeredUsers = [
-  {
-    id: 'uid:0', username: 'admin', email: 'admin@example.com', password: 'qwerty',
-  },
-  {
-    id: 'uid:1', username: 'lee', email: 'lee@example.com', password: '123456',
-  },
-];
+const registeredUsers = new Map([
+  ['admin', {
+    id: 'uid:0', username: 'admin', email: 'admin@example.com', password: 'qwerty', firstname: 'App', lastname: 'Admin',
+  }],
+  ['lee', {
+    id: 'uid:973236115', username: 'lee', email: 'lee@acne.com', password: '12345', firstname: 'Steve', lastname: 'Lee',
+  }],
+]);
+
+function newUID() {
+  const epoch = Math.floor(new Date() / 1000).toString();
+  return `uid:${epoch}`;
+}
 
 function newToken() {
   return (Math.random() * 1000000000).toString(16);
@@ -37,8 +42,11 @@ function isAuth() {
 
 async function login(username, password) {
   return new Promise((resolve, reject) => {
+    // Using setTimeout to simulate network latency.
     setTimeout(() => {
-      const found = registeredUsers.find((user) => user.username === username && user.password === password);
+      // const found = registeredUsers.find((user) => user.username === username && user.password === password);
+
+      const found = registeredUsers.get(username);
 
       if (found) {
         const token = newToken();
@@ -53,6 +61,7 @@ async function login(username, password) {
 
 async function logout() {
   return new Promise((resolve) => {
+    // Using setTimeout to simulate network latency.
     setTimeout(() => {
       localStorage.removeItem(keyUser);
       resolve();
@@ -60,6 +69,22 @@ async function logout() {
   });
 }
 
+async function addUser(user) {
+  return new Promise((resolve) => {
+    // Using setTimeout to simulate network latency.
+    const id = newUID();
+    setTimeout(() => {
+      const merged = {
+        ...user,
+        id,
+      };
+
+      registeredUsers.set(user.username, merged);
+      resolve(merged);
+    }, 1000);
+  });
+}
+
 export {
-  getSession, isAuth, login, logout,
+  getSession, isAuth, login, logout, addUser,
 };

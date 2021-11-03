@@ -14,7 +14,7 @@ import Dashboard from '../pages/Dashboard';
 import Apps from '../pages/Apps';
 import Users from '../pages/Users';
 import Settings from '../pages/Settings';
-import AuthProvider from '../services/AuthProvider';
+import AuthProvider from '../hooks/AuthProvider';
 
 function App() {
   return (

@@ -11,26 +11,22 @@ function Sidebar() {
   ];
 
   return (
-    <div className="container-fluid">
-      <div className="row">
-        <nav id="sidebarMenu" className="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-          <div className="position-sticky pt-3">
-            <ul className="nav flex-column">
-              {
-                items.map((item, i) => (
-                  <li key={i} className="nav-item">
-                    <NavLink className="nav-link" end to={item.path}>
-                      <i className={`bi ${item.icon} pe-2`} />
-                      {item.title}
-                    </NavLink>
-                  </li>
-                ))
-              }
-            </ul>
-          </div>
-        </nav>
+    <>
+      <div className="position-sticky pt-3">
+        <ul className="nav flex-column">
+          {
+            items.map((item, i) => (
+              <li key={i} className="nav-item">
+                <NavLink className="nav-link" end to={item.path}>
+                  <i className={`bi ${item.icon} pe-2`} />
+                  {item.title}
+                </NavLink>
+              </li>
+            ))
+          }
+        </ul>
       </div>
-    </div>
+    </>
   );
 }
 

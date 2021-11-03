@@ -5,7 +5,7 @@ import { Button, Spinner } from 'react-bootstrap';
 
 import { logout } from '../services/MockAuthService';
 
-import './auth.css';
+import './login.css';
 
 function Logout() {
   const title = 'Logout';
@@ -34,7 +34,8 @@ function Logout() {
           <Button className="w-100 btn btn-lg btn-primary"
                   type="button"
                   disabled={isLoading}
-                  onClick={handleLogout}>
+                  onClick={handleLogout}
+          >
             <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" hidden={!isLoading} />
             <span className="px-2">Log out</span>
           </Button>

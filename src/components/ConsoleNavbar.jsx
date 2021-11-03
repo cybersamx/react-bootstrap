@@ -1,10 +1,11 @@
 import { useNavigate } from 'react-router-dom';
-
-import { logout } from '../services/MockAuthService';
-import './console-navbar.css';
-import logo from './logo.svg';
 import Jdenticon from './Jdenticon';
 import useAuth from '../hooks/useAuth';
+
+import { logout } from '../services/MockAuthService';
+
+import './console-navbar.css';
+import logo from './logo.svg';
 
 function ConsoleNavbar() {
   const navigate = useNavigate();
@@ -31,7 +32,8 @@ function ConsoleNavbar() {
                   data-bs-target="#sidebarMenu"
                   aria-controls="sidebarMenu"
                   aria-expanded="false"
-                  aria-label="Toggle navigation">
+                  aria-label="Toggle navigation"
+          >
             <span className="navbar-toggler-icon"/>
           </button>
         </div>
@@ -41,7 +43,8 @@ function ConsoleNavbar() {
               <button className="nav-link dropdown-toggle nav-avatar-dropdown"
                       id="dropdownMenu"
                       data-bs-toggle="dropdown"
-                      aria-expanded="false">
+                      aria-expanded="false"
+              >
                 <Jdenticon className="nav-avatar rounded-circle" name={user.username} height="32px" width="32px" />
                 {user.username}
               </button>

@@ -23,7 +23,8 @@ function MainNavbar() {
                 data-bs-target="#navbarMenu"
                 aria-controls="navbarMenu"
                 aria-expanded="false"
-                aria-label="Toggle navigation">
+                aria-label="Toggle navigation"
+        >
           <span className="navbar-toggler-icon"/>
         </button>
         <div className="collapse navbar-collapse" id="navbarMenu">

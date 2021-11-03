@@ -3,29 +3,41 @@ import { Helmet } from 'react-helmet';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import {
-  Col, Form, FormControl, InputGroup, FormLabel,
+  Col, Button, Form, FormControl, InputGroup, FormLabel, Spinner,
 } from 'react-bootstrap';
+
+import { addUser } from '../services/MockAuthService';
 
 import './signup.css';
 
 // eslint-disable-next-line max-len
-const emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+const emailPattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 const namePattern = /^[A-Za-z-]*$/;
 
 function Signup() {
   const title = 'Signup';
 
-  const navigate = useNavigate();
   const [isValidated, setIsValidated] = useState(false); // Disable browser form validator.
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
   const {
-    register, handleSubmit, watch, formState: { errors },
+    register, handleSubmit, formState: { errors },
   } = useForm();
 
-  const handleSignup = (data) => {
-    console.log(data);
-    setIsValidated(true);
-
-    navigate('/login');
+  const handleSignup = async (data) => {
+    try {
+      setIsLoading(true);
+      const user = await addUser(data);
+      // eslint-disable-next-line no-console
+      console.log(`signup successful, user: ${user}`);
+      setIsValidated(true);
+      setIsLoading(false);
+      navigate('/login');
+    } catch (err) {
+      setIsLoading(false);
+      // eslint-disable-next-line no-alert
+      alert(`signup failed: ${err}`);
+    }
   };
 
   return (
@@ -121,9 +133,12 @@ function Signup() {
               {...register('agree', { required: true })}
             />
           </Form.Group>
-          <button className="w-100 btn btn-lg btn-primary"
+          <Button className="w-100 btn btn-lg btn-primary"
                   type="button"
-                  onClick={handleSubmit(handleSignup)}>Sign up</button>
+                  onClick={handleSubmit(handleSignup)}>
+            <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" hidden={!isLoading} />
+            <span className="px-2">Sign up</span>
+          </Button>
         </Form>
       </main>
     </>
