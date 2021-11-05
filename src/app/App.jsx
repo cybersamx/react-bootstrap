@@ -8,6 +8,7 @@ import Home from '../pages/Home';
 import Login from '../pages/Login';
 import Logout from '../pages/Logout';
 import Signup from '../pages/Signup';
+import ForgotPassword from '../pages/ForgotPassword';
 import NotFound from '../pages/NotFound';
 import Profile from '../pages/Profile';
 import Dashboard from '../pages/Dashboard';
@@ -26,6 +27,7 @@ function App() {
             <Route path="login" element={<Login />} />
             <Route path="logout" element={<Logout />} />
             <Route path="signup" element={<Signup />} />
+            <Route path="forgot" element={<ForgotPassword />} />
             <Route path="not-found" element={<NotFound />} />
             <Route path="*" element={<Navigate to="/not-found" />} />
           </Route>

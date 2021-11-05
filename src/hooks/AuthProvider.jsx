@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {
-  getSession, isAuth, login, logout, addUser, getUsers,
+  getSession, isAuth, login, logout, sendPasswordReset, addUser, getUsers,
 } from '../services/MockAuthService';
 
 const AuthContext = React.createContext(null);
@@ -13,6 +13,7 @@ function AuthProvider({ children, ...rest }) {
     isAuth,
     login,
     logout,
+    sendPasswordReset,
     addUser,
     getUsers,
   };

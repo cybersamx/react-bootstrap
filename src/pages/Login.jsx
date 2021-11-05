@@ -1,14 +1,15 @@
+import { useRef, useState } from 'react';
 import { Helmet } from 'react-helmet';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import {
-  Button, FormControl, FormLabel, InputGroup, Spinner,
+  Button, Col, Form, FormControl, FormLabel, Row, Spinner,
 } from 'react-bootstrap';
 
+import StatusAlert from '../components/StatusAlert';
 import useAuth from '../hooks/useAuth';
 import useForm from '../hooks/useForm';
 
-import './login.css';
+import './auth.css';
 
 function redirectPath(search) {
   const match = search.match(/redirect=(.*)/);
@@ -24,10 +25,15 @@ function Login() {
   const navigate = useNavigate();
   const { search } = useLocation();
 
-  const handleLogin = async (e, data) => {
-    try {
-      // No action taken for remember me. Just keep it simple.
+  const alertOpts = useRef({ isShow: false, message: '' });
 
+  const handleDismiss = () => {
+    alertOpts.current.isShow = false;
+  };
+
+  const handleLogin = async (e, data) => {
+    console.log(data.username, data.password);
+    try {
       setIsLoading(true);
       const token = await login(data.username, data.password);
       // eslint-disable-next-line no-console
@@ -35,9 +41,11 @@ function Login() {
       setIsLoading(false);
       navigate(redirectPath(search));
     } catch (err) {
+      // Need to useRef to avoid cyclic reference of the show state in StatusAlert but we now must set alertOps
+      // before a set state call so that StatusAlert can render.
+      // TODO: Figure a more elegant solution for auto-dismissal alert.
+      alertOpts.current = { isShow: true, message: err.message };
       setIsLoading(false);
-      // eslint-disable-next-line no-alert
-      alert(`login failed: ${err}`);
     }
   };
 
@@ -70,42 +78,43 @@ function Login() {
         <title>{title}</title>
       </Helmet>
       <main className="container-auth text-center">
-        <form>
+        <Form noValidate>
           <i className="bi bi-file-lock-fill auth-icon my-4"/>
           <p className="mb-3 fw-normal">
             Click <strong>Log in</strong> button to log into the admin console.
             Use <strong>admin</strong>:<strong>qwerty</strong> to log in.
           </p>
-          <InputGroup className="form-floating">
+          <Form.Group className="form-floating" controlId="inputUsername">
             <FormControl type="text"
                          className="form-control form-input-top"
-                         id="inputUsername"
-                         placeholder="Username"
                          isInvalid={errors?.username}
+                         placeholder="Username"
                          onChange={handleChange('username')}
             />
-            <FormLabel htmlFor="inputUsername">Username</FormLabel>
-          </InputGroup>
-          <InputGroup className="form-floating">
+            <FormLabel>Username</FormLabel>
+          </Form.Group>
+          <Form.Group className="form-floating" controlId="inputPassword">
             <FormControl type="password"
                          className="form-control form-input-bottom"
-                         id="inputPassword"
-                         placeholder="Password"
                          isInvalid={errors?.password}
+                         placeholder="Password"
                          onChange={handleChange('password')}
             />
-            <FormLabel htmlFor="inputPassword">Password</FormLabel>
-          </InputGroup>
-          {Object.keys(errors).map((key) => <div className="text-danger" key={key}>{errors[key]}</div>)}
-          <div className="checkbox mb-3 my-3">
-            <label>
-              <input type="checkbox"
-                     value="isRemember"
-                     checked={data.isRemember}
-                     onChange={handleChange('isRemember')}
-              />
-              Remember me
-            </label>
+            <FormLabel>Password</FormLabel>
+          </Form.Group>
+          <div>
+            {Object.keys(errors).map((key) => <div className="text-danger" key={key}>{errors[key]}</div>)}
+          </div>
+          <Form.Group as={Row} className="my-3" controlId="isRemember">
+            <Col sm={{ span: 8, offset: 3 }} className="text-md-start">
+              <Form.Check label="Remember me"
+                          checked={data.isRemember}
+                          onChange={handleChange('isRemember')} />
+            </Col>
+          </Form.Group>
+          <div className="row mb-3">
+            <div className="col-6"><Link to="/forgot">Forgot password</Link></div>
+            <div className="col-6"><Link to="/signup">New account</Link></div>
           </div>
           <Button className="w-100 btn btn-lg btn-primary"
                   type="button"
@@ -115,8 +124,13 @@ function Login() {
             <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" hidden={!isLoading} />
             <span className="px-2">Log in</span>
           </Button>
-        </form>
+        </Form>
       </main>
+      <StatusAlert show={alertOpts.current.isShow}
+                   variant="failure"
+                   message={alertOpts.current.message}
+                   onDismiss={handleDismiss}
+      />
     </>
   );
 }

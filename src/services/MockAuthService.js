@@ -44,17 +44,18 @@ async function login(username, password) {
   return new Promise((resolve, reject) => {
     // Using setTimeout to simulate network latency.
     setTimeout(() => {
-      // const found = registeredUsers.find((user) => user.username === username && user.password === password);
-
       const found = registeredUsers.get(username);
-
-      if (found) {
-        const token = newToken();
-        setSession(found, token);
-        return resolve(token);
+      if (!found) {
+        return reject(new Error('user not found'));
       }
 
-      return reject(new Error('invalid credentials'));
+      if (found.password !== password) {
+        return reject(new Error('invalid credentials'));
+      }
+
+      const token = newToken();
+      setSession(found, token);
+      return resolve(token);
     }, 2000);
   });
 }
@@ -64,6 +65,15 @@ async function logout() {
     // Using setTimeout to simulate network latency.
     setTimeout(() => {
       localStorage.removeItem(keyUser);
+      resolve();
+    }, 1000);
+  });
+}
+
+async function sendPasswordReset() {
+  return new Promise((resolve) => {
+    // Using setTimeout to simulate network latency.
+    setTimeout(() => {
       resolve();
     }, 1000);
   });
@@ -95,6 +105,8 @@ async function getUsers() {
   });
 }
 
+// The useAuth hook is a wrapper to this service, make sure exported functions are also reflected
+// in the useAuth hook.
 export {
-  getSession, isAuth, login, logout, addUser, getUsers,
+  getSession, isAuth, login, logout, sendPasswordReset, addUser, getUsers,
 };
