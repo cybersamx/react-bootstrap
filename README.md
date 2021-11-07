@@ -38,14 +38,6 @@ Learning React through this project and motivated to create a boilerplate projec
    $ yarn build
    ```
 
-## Notes
-
-### React Router v6
-
-This project uses React Router v6, which I think has a clean programming model for routing. The downside is that it is still in beta. Hopefully, the library will be officially released by the end of 2021.
-
-There seems to be in the `Routes` component from `react-router-dom`. I can't seem to get `Routes` to recognize my custom Route component that I wrote for encapsulating the auth logic. The workaround is to embed the logic in the `ConsoleLayout`.
-
 ## Credits
 
 * [Bootstrap 5 Examples](https://getbootstrap.com/docs/5.1/examples) - Used many of the examples on Bootstrap 5 website on this project.
@@ -53,6 +45,4 @@ There seems to be in the `Routes` component from `react-router-dom`. I can't see
 
 ## Reference
 
-* [React Router v6 Preview](https://reacttraining.com/blog/react-router-v6-pre/)
-* [Upgrade React Router v5 to v6](https://morioh.com/p/995f1244f33b)
-* [React Router v6 Reference](https://github.com/remix-run/react-router/blob/c13b66939ef48eacf7067f7aec4752777be8b17c/docs/api-reference.md)
+* [React Router v6](https://github.com/remix-run/react-router/)

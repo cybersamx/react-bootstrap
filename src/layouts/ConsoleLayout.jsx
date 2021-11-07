@@ -9,8 +9,6 @@ function ConsoleLayout() {
   const auth = useAuth();
   const { pathname } = useLocation();
 
-  // Issue with react-router-dom v6 recognizing a custom route. Put the logic here as a workaround.
-  // TODO: Refactor and put check services logic in a custom route once the above issue is fixed.
   if (auth.isAuth()) {
     return (
       <>
