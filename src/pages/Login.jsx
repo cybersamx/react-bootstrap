@@ -32,6 +32,7 @@ function Login() {
   };
 
   const handleLogin = async (e, data) => {
+    // eslint-disable-next-line no-console
     console.log(data.username, data.password);
     try {
       setIsLoading(true);
